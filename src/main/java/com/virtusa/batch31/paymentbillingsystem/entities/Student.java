@@ -1,6 +1,7 @@
 package com.virtusa.batch31.paymentbillingsystem.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Student {
 	private String email;
 	
 	@OneToMany
-	ArrayList<PaymentDetail> paymentDetails = new ArrayList<>();
+	List<PaymentDetail> paymentDetails = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn
@@ -75,6 +76,15 @@ public class Student {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+
+	public List<PaymentDetail> getPaymentDetails() {
+		return paymentDetails;
+	}
+
+	public void setPaymentDetails(List<PaymentDetail> paymentDetails) {
+		this.paymentDetails = paymentDetails;
+	}
+	
 	
 	
 }

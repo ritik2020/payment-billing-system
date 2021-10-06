@@ -1,6 +1,7 @@
 package com.virtusa.batch31.paymentbillingsystem.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Course {
 	private String fee;
 	
 	@OneToMany
-	ArrayList<Student> students = new ArrayList<>();
+	List<Student> students = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -53,11 +54,11 @@ public class Course {
 		this.fee = fee;
 	}
 
-	public ArrayList<Student> getStudents() {
+	public List<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(ArrayList<Student> students) {
+	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 	
