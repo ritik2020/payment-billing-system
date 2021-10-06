@@ -20,10 +20,9 @@ public class AccountantService {
 	
 	public Accountant createAccountant(int branchId, Accountant accountant) {
 		Branch branch = branchRepository.getById(branchId);
-		List<Accountant> accountants = branch.getAccountants();
-		accountants.add(accountant);
-		branch.setAccountants(accountants);
+		branch.getAccountants().add(accountant);
 		branchRepository.save(branch);
+		accountant.setBranch(branch);
 		return accountantRepository.save(accountant); 
 	}
 	

@@ -18,16 +18,16 @@ public class Student {
 	private String phone;
 	private String email;
 	
-	@OneToMany
+	@OneToMany(mappedBy="student")
 	List<PaymentDetail> paymentDetails = new ArrayList<>();
 	
 	@ManyToOne
-	@JoinColumn
-	private int branchId;
+	@JoinColumn(name="branch_id")
+	private Branch branch;
 	
 	@ManyToOne
-	@JoinColumn
-	private int courseId;
+	@JoinColumn(name="course_id")
+	private Course course;
 
 	public int getRollNumber() {
 		return rollNumber;
@@ -61,22 +61,6 @@ public class Student {
 		this.email = email;
 	}
 
-	public int getBranchId() {
-		return branchId;
-	}
-
-	public void setBranchId(int branchId) {
-		this.branchId = branchId;
-	}
-
-	public int getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
-	}
-
 	public List<PaymentDetail> getPaymentDetails() {
 		return paymentDetails;
 	}
@@ -84,7 +68,21 @@ public class Student {
 	public void setPaymentDetails(List<PaymentDetail> paymentDetails) {
 		this.paymentDetails = paymentDetails;
 	}
-	
-	
+
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 	
 }

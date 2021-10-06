@@ -20,10 +20,8 @@ public class PaymentDetailService {
 	
 	public PaymentDetail createPaymentDetail(int rollNumber, PaymentDetail paymentDetail) {
 		Student student = studentRepository.getById(rollNumber);
-		List<PaymentDetail> paymentDetails = student.getPaymentDetails();
-		paymentDetails.add(paymentDetail);
-		student.setPaymentDetails(paymentDetails);
-		
+		student.getPaymentDetails().add(paymentDetail);
+		paymentDetail.setStudent(student);
 		studentRepository.save(student);
 		return paymentDetailRepository.save(paymentDetail);
 	}
@@ -40,7 +38,6 @@ public class PaymentDetailService {
 		PaymentDetail pd = paymentDetailRepository.getById(paymentDetail.getId());
 		pd.setAmount(paymentDetail.getAmount());
 		pd.setDate(paymentDetail.getDate());
-		pd.setRollNumber(paymentDetail.getRollNumber());
 		return paymentDetailRepository.save(pd);
 	}
 	

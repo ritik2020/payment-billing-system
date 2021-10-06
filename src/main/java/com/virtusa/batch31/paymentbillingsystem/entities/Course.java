@@ -19,7 +19,7 @@ public class Course {
 	private String durationInYears;
 	private String fee;
 	
-	@OneToMany
+	@OneToMany(mappedBy="course")
 	List<Student> students = new ArrayList<>();
 
 	public int getId() {

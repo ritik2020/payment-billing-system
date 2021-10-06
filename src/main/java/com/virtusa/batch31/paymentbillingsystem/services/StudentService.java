@@ -26,13 +26,10 @@ public class StudentService {
 	public Student createStudent(int branchId, int courseId, Student student) {
 		Branch branch = branchRepository.getById(branchId);
 		Course course = courseRepository.getById(courseId);
-		
-		List<Student> branchStudents = branch.getStudents();
-		List<Student> courseStudents = course.getStudents();
-		
-		branchStudents.add(student);
-		courseStudents.add(student);
-		
+		branch.getStudents().add(student);
+		course.getStudents().add(student);
+		student.setBranch(branch);
+		student.setCourse(course);
 		branchRepository.save(branch);
 		courseRepository.save(course);
 		return studentRepository.save(student);

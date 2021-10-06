@@ -19,8 +19,8 @@ public class Accountant {
 	private String password;
 	
 	@ManyToOne
-	@JoinColumn
-	private int branchId;
+	@JoinColumn(name="branch_id")
+	private Branch branch;
 
 	public int getId() {
 		return id;
@@ -46,14 +46,6 @@ public class Accountant {
 		this.salary = salary;
 	}
 
-	public int getBranchId() {
-		return branchId;
-	}
-
-	public void setBranchId(int branchId) {
-		this.branchId = branchId;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -69,7 +61,15 @@ public class Accountant {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
 	
 	
 }
