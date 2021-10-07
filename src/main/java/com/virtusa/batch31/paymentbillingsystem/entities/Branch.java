@@ -18,10 +18,10 @@ public class Branch {
 	private String name;
 	private String address;
 	
-	@OneToMany
+	@OneToMany(mappedBy="branch")
 	List<Student> students = new ArrayList<>();
 	
-	@OneToMany
+	@OneToMany(mappedBy="branch")
 	List<Accountant> accountants = new ArrayList<>();
 
 	public int getId() {
