@@ -3,10 +3,12 @@ package com.virtusa.batch31.paymentbillingsystem.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -16,10 +18,11 @@ public class Course {
 	private int id;
 	
 	private String name;
-	private String durationInYears;
+	private String duration;
 	private String fee;
 	
-	@OneToMany(mappedBy="course")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "course_id")
 	List<Student> students = new ArrayList<>();
 
 	public int getId() {
@@ -38,14 +41,6 @@ public class Course {
 		this.name = name;
 	}
 
-	public String getDurationInYears() {
-		return durationInYears;
-	}
-
-	public void setDurationInYears(String durationInYears) {
-		this.durationInYears = durationInYears;
-	}
-
 	public String getFee() {
 		return fee;
 	}
@@ -61,8 +56,12 @@ public class Course {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
-	
-	
-	
 
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 }

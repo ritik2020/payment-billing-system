@@ -19,15 +19,15 @@ public class PaymentDetailService {
 	private StudentRepository studentRepository;
 	
 	public PaymentDetail createPaymentDetail(int rollNumber, PaymentDetail paymentDetail) {
+		PaymentDetail pd = paymentDetailRepository.save(paymentDetail);
 		Student student = studentRepository.getById(rollNumber);
-		student.getPaymentDetails().add(paymentDetail);
-		paymentDetail.setStudent(student);
+		student.getPaymentDetails().add(pd);
 		studentRepository.save(student);
-		return paymentDetailRepository.save(paymentDetail);
+		return pd;
 	}
 
 	public PaymentDetail getPaymentDetail(int id) {
-		return paymentDetailRepository.getById(id);
+		return paymentDetailRepository.findById(id).orElse(null);
 	}
 	
 	public List<PaymentDetail> getAllPaymentDetails(){

@@ -24,19 +24,18 @@ public class StudentService {
 	private CourseRepository courseRepository;
 	
 	public Student createStudent(int branchId, int courseId, Student student) {
+		Student st = studentRepository.save(student);
 		Branch branch = branchRepository.getById(branchId);
 		Course course = courseRepository.getById(courseId);
-		branch.getStudents().add(student);
-		course.getStudents().add(student);
-		student.setBranch(branch);
-		student.setCourse(course);
+		branch.getStudents().add(st);
+		course.getStudents().add(st);
 		branchRepository.save(branch);
 		courseRepository.save(course);
-		return studentRepository.save(student);
+		return st;
 	}
 	
 	public Student getStudent(int rollNumber) {
-		return studentRepository.getById(rollNumber);
+		return studentRepository.findById(rollNumber).orElse(null);
 	}
 	
 	public List<Student> getAllStudents(){

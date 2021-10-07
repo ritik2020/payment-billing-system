@@ -29,8 +29,7 @@ public class BranchService {
 		Branch b = branchRepository.getById(branch.getId());
 		b.setName(branch.getName());
 		b.setAddress(branch.getAddress());
-		return branchRepository.save(b);
-		
+		return branchRepository.save(b);	
 	}
 	
 	public void deleteBranch(int id) {

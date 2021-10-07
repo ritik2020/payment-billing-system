@@ -22,7 +22,7 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@PostMapping("/")
-	public Course createCourse(Course course) {
+	public Course createCourse(@RequestBody Course course) {
 		return courseService.addCourse(course);
 	}
 	

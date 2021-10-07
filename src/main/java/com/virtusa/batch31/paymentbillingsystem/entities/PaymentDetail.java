@@ -4,19 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class PaymentDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
-	
-	@ManyToOne
-	@JoinColumn(name="roll_no")
-	private Student student;
-	
+		
 	private String amount;
 	private String date; //yyyy-mm-dd
 	public int getId() {
@@ -25,12 +19,7 @@ public class PaymentDetail {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Student getStudent() {
-		return student;
-	}
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+	
 	public String getAmount() {
 		return amount;
 	}

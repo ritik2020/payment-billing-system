@@ -16,7 +16,7 @@ import com.virtusa.batch31.paymentbillingsystem.entities.PaymentDetail;
 import com.virtusa.batch31.paymentbillingsystem.services.PaymentDetailService;
 
 @RestController
-@RequestMapping("/paymentdetails")
+@RequestMapping("/paymentdetail")
 public class PaymentDetailController {
 
 	@Autowired

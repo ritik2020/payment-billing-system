@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Accountant {
@@ -18,10 +16,6 @@ public class Accountant {
 	private String username;
 	private String password;
 	
-	@ManyToOne
-	@JoinColumn(name="branch_id")
-	private Branch branch;
-
 	public int getId() {
 		return id;
 	}
@@ -61,15 +55,4 @@ public class Accountant {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-
-	
-	
 }

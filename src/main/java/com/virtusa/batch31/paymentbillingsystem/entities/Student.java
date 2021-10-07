@@ -3,10 +3,10 @@ package com.virtusa.batch31.paymentbillingsystem.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,16 +18,11 @@ public class Student {
 	private String phone;
 	private String email;
 	
-	@OneToMany(mappedBy="student")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "roll_no")
 	List<PaymentDetail> paymentDetails = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name="branch_id")
-	private Branch branch;
 	
-	@ManyToOne
-	@JoinColumn(name="course_id")
-	private Course course;
 
 	public int getRollNumber() {
 		return rollNumber;
@@ -68,21 +63,4 @@ public class Student {
 	public void setPaymentDetails(List<PaymentDetail> paymentDetails) {
 		this.paymentDetails = paymentDetails;
 	}
-
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-	
 }

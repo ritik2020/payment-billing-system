@@ -18,7 +18,7 @@ public class CourseService {
 	}
 	
 	public Course getCourse(int id) {
-		return courseRepository.getById(id);
+		return courseRepository.findById(id).orElse(null);
 	}
 	
 	public List<Course> getAllCourses(){
@@ -28,7 +28,7 @@ public class CourseService {
 	public Course updateCourse(Course course) {
 		Course c = courseRepository.getById(course.getId());
 		c.setName(course.getName());
-		c.setDurationInYears(course.getDurationInYears());
+		c.setDuration(course.getDuration());
 		c.setFee(course.getFee());
 		return courseRepository.save(c);
 	}
@@ -36,5 +36,4 @@ public class CourseService {
 	public void deleteCourse(int id) {
 		courseRepository.deleteById(id);
 	}
-
 }
