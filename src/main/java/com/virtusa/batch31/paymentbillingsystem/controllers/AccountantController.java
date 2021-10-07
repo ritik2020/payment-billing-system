@@ -16,14 +16,14 @@ import com.virtusa.batch31.paymentbillingsystem.entities.Accountant;
 import com.virtusa.batch31.paymentbillingsystem.services.AccountantService;
 
 @RestController
-@RequestMapping("/Accountant")
+@RequestMapping("/accountant")
 public class AccountantController {
 	@Autowired
 	private AccountantService accountantService;
 	
-	@PostMapping("/")
-	public Accountant createAccountant(@RequestBody Accountant accountant) {
-		return accountantService.createAccountant(id, accountant);
+	@PostMapping("/{branchId}")
+	public Accountant createAccountant(@PathVariable("branchId") int branchId, @RequestBody Accountant accountant) {
+		return accountantService.createAccountant(branchId, accountant);
 	}
 	
 	@GetMapping("/")
