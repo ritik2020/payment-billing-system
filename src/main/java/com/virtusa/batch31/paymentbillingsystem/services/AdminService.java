@@ -21,7 +21,7 @@ public class AdminService {
 		return adminRepository.getById(id);
 	}
 	
-	public List<Admin> getAllAdmins(int id){
+	public List<Admin> getAllAdmins(){
 		return adminRepository.findAll();
 	}
 	

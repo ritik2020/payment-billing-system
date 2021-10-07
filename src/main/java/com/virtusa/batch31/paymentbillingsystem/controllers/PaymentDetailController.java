@@ -17,35 +17,34 @@ import com.virtusa.batch31.paymentbillingsystem.services.PaymentDetailService;
 
 @RestController
 @RequestMapping("/paymentdetails")
-
 public class PaymentDetailController {
-	
-@Autowired
-private PaymentDetailService paymentDetailService;
 
-@PostMapping("/")
-public PaymentDetail createPaymentDetail(int rollNumber, PaymentDetail paymentDetail) {
-	return paymentDetailService.createPaymentDetail(rollNumber, paymentDetail);
-}
+	@Autowired
+	private PaymentDetailService paymentDetailService;
 
-@GetMapping("/")
-public PaymentDetail getPaymentDetail(@PathVariable int id) {
-	return paymentDetailService.getPaymentDetail(id);
-}
-
-@GetMapping("/")
-public List<PaymentDetail> getAllPaymentDetails(){
-	return paymentDetailService.getAllPaymentDetails();
+	@PostMapping("/{rollNumber}")
+	public PaymentDetail createPaymentDetail(@PathVariable("rollNumber") int rollNumber, @RequestBody PaymentDetail paymentDetail) {
+		return paymentDetailService.createPaymentDetail(rollNumber, paymentDetail);
 	}
 
-@PutMapping("/")
-public PaymentDetail updatePaymentDetail(@RequestBody PaymentDetail paymentDetail) {
-	return paymentDetailService.updatePaymentDetail(paymentDetail);
-}
+	@GetMapping("/{id}")
+	public PaymentDetail getPaymentDetail(@PathVariable("id") int id) {
+		return paymentDetailService.getPaymentDetail(id);
+	}
 
-@DeleteMapping("/")
-public String deleteBranch(@PathVariable("id") int id) {
-	paymentDetailService.deletePaymentDetail(id);
-	return "Deleted Successfully";
-}
+	@GetMapping("/")
+	public List<PaymentDetail> getAllPaymentDetails() {
+		return paymentDetailService.getAllPaymentDetails();
+	}
+
+	@PutMapping("/")
+	public PaymentDetail updatePaymentDetail(@RequestBody PaymentDetail paymentDetail) {
+		return paymentDetailService.updatePaymentDetail(paymentDetail);
+	}
+
+	@DeleteMapping("/{id}")
+	public String deleteBranch(@PathVariable("id") int id) {
+		paymentDetailService.deletePaymentDetail(id);
+		return "Deleted Successfully";
+	}
 }
