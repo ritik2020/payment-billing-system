@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.virtusa.batch31.paymentbillingsystem.entities.Branch;
+import com.virtusa.batch31.paymentbillingsystem.entities.Student;
 import com.virtusa.batch31.paymentbillingsystem.services.BranchService;
 
 @RestController
@@ -35,6 +36,11 @@ public class BranchController {
 	@GetMapping("/{id}")
 	public Branch getBranchById(@PathVariable("id") int id) {
 		return branchService.getBranch(id);
+	}
+	
+	@GetMapping("/students/{id}")
+	public List<Student> getStudentsOfBranch(@PathVariable("id") int id){
+		return branchService.getStudentsOfABranch(id);
 	}
 	
 	@PutMapping("/")

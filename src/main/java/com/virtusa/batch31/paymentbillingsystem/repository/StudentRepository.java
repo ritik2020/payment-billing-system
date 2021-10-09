@@ -11,4 +11,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 	@Query("Select c from Course c join c.students s where s.rollNumber = :rollNumber")
 	public Course getEnrolledCourse(@Param("rollNumber") int rollNumber);
+
+	
 }
