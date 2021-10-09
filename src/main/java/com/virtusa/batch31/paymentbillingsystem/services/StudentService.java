@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.virtusa.batch31.paymentbillingsystem.entities.Branch;
 import com.virtusa.batch31.paymentbillingsystem.entities.Course;
+import com.virtusa.batch31.paymentbillingsystem.entities.PaymentDetail;
 import com.virtusa.batch31.paymentbillingsystem.entities.Student;
 import com.virtusa.batch31.paymentbillingsystem.repository.BranchRepository;
 import com.virtusa.batch31.paymentbillingsystem.repository.CourseRepository;
@@ -40,6 +41,23 @@ public class StudentService {
 	
 	public List<Student> getAllStudents(){
 		return studentRepository.findAll();
+	}
+	
+	public Course getEnrolledCourse(int rollNumber) {
+		return studentRepository.getEnrolledCourse(rollNumber);
+	}
+	
+	public int getRemainingFee(int rollNo) {
+		Student s = getStudent(rollNo);
+		List<PaymentDetail> p = s.getPaymentDetails();
+		int paidFee = 0;
+		for(int i=0; i<p.size(); i++) {
+			int amount = Integer.parseInt(p.get(i).getAmount());
+			paidFee+=amount;
+		}
+		Course c = getEnrolledCourse(rollNo);
+		int courseFee = Integer.parseInt(c.getFee());
+		return courseFee-paidFee;
 	}
 	
 	public Student updateStudent(Student student) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.virtusa.batch31.paymentbillingsystem.entities.Course;
 import com.virtusa.batch31.paymentbillingsystem.entities.Student;
 import com.virtusa.batch31.paymentbillingsystem.services.StudentService;
 
@@ -35,6 +36,16 @@ public class StudentController {
 	@GetMapping("/{rollNo}")
 	public Student getStudentByRollNo(@PathVariable("rollNo") int rollNo) {
 		return studentService.getStudent(rollNo);
+	}
+	
+	@GetMapping("/course/{rollNo}")
+	public Course getEnrolledCourse(@PathVariable("rollNo") int rollNo) {
+		return studentService.getEnrolledCourse(rollNo);
+	}
+	
+	@GetMapping("/fee/{rollNo}")
+	public int getRemainingFee(@PathVariable("rollNo") int rollNo) {
+		return studentService.getRemainingFee(rollNo);
 	}
 	
 	@PutMapping("/")
