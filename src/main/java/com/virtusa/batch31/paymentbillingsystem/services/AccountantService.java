@@ -34,12 +34,24 @@ public class AccountantService {
 		return accountantRepository.findAll();
 	}
 	
+	public Branch getBranch(int accId) {
+		return accountantRepository.getBranch(accId);
+	}
+	
 	public Accountant updateAccountant(Accountant accountant) {
 		Accountant acc = accountantRepository.getById(accountant.getId());
-		acc.setName(accountant.getName());
-		acc.setSalary(accountant.getSalary());
-		acc.setUsername(accountant.getUsername());
-		acc.setPassword(accountant.getPassword());
+		if(accountant.getClass()!=null) {
+			acc.setName(accountant.getName());
+		}
+		if(accountant.getSalary()!=null) {
+			acc.setSalary(accountant.getSalary());	
+		}
+		if(accountant.getUsername()!=null) {
+			acc.setUsername(accountant.getUsername());	
+		}
+		if(accountant.getPassword()!=null) {
+			acc.setPassword(accountant.getPassword());	
+		}
 		return accountantRepository.save(acc);		
 	}
 	
