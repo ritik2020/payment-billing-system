@@ -25,28 +25,29 @@ public class RequestInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String token = request.getHeader("token");
-		if(token==null && !jwtUtilService.validateToken(token)) {
-			response.getWriter().write("Unauthorized Request");
-			response.setStatus(401);
-			return false;
-		}
-		String url = request.getRequestURI().toString();
-		Claims claims = jwtUtilService.extractAllClaims(token);
-		String role = (String)claims.get("role");
-		System.out.println(url);
-		System.out.println(role);
-		
-		List<String> allowedRoles = apiRoleMapping.getAllowedRoles(url);
-		System.out.println(allowedRoles);
-		if(allowedRoles.contains(role)) {
-			return true;
-		}
-		else {
-			response.getWriter().write("You are not authorized to access this resource");
-			response.setStatus(401);
-			return false;
-		}
+		return true;
+//		String token = request.getHeader("token");
+//		if(token==null && !jwtUtilService.validateToken(token)) {
+//			response.getWriter().write("Unauthorized Request");
+//			response.setStatus(401);
+//			return false;
+//		}
+//		String url = request.getRequestURI().toString();
+//		Claims claims = jwtUtilService.extractAllClaims(token);
+//		String role = (String)claims.get("role");
+//		System.out.println(url);
+//		System.out.println(role);
+//		
+//		List<String> allowedRoles = apiRoleMapping.getAllowedRoles(url);
+//		System.out.println(allowedRoles);
+//		if(allowedRoles.contains(role)) {
+//			return true;
+//		}
+//		else {
+//			response.getWriter().write("You are not authorized to access this resource");
+//			response.setStatus(401);
+//			return false;
+//		}
 	}
 	
 	
