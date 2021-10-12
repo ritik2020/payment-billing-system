@@ -11,5 +11,8 @@ public interface AccountantRepository extends JpaRepository<Accountant, Integer>
 	
 	@Query("Select b from Branch b join b.accountants a where a.id = :id")
 	public Branch getBranch(@Param("id") int id);
+	
+	@Query("Select a from Accountant a where a.username = :username AND password = :password")
+	public Accountant isExists(@Param("username") String username, @Param("password") String password);
 
 }

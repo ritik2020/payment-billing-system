@@ -26,6 +26,10 @@ public class AccountantService {
 		return acc; 
 	}
 	
+	public Accountant isExists(String username, String password) {
+		return accountantRepository.isExists(username, password);
+	}
+	
 	public Accountant getAccountant(int id) {
 		return accountantRepository.findById(id).orElse(null); 	
 	}

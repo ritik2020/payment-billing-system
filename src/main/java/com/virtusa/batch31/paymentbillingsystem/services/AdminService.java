@@ -17,6 +17,10 @@ public class AdminService {
 		return adminRepository.save(admin);
 	}
 	
+	public Admin isExists(String username, String password) {
+		return adminRepository.isExists(username, password);
+	}
+	
 	public Admin getAdmin(int id) {
 		return adminRepository.findById(id).orElse(null);
 	}
