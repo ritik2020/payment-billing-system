@@ -15,6 +15,16 @@ public class ApiRoleMapping {
 	public ApiRoleMapping() {
 		super();
 		mapping.put("/branch/", Arrays.asList("accountant"));
+		mapping.put("/admin/",Arrays.asList("admin"));
+		mapping.put("/student/",Arrays.asList("admin","accountant"));
+		mapping.put("/login/",Arrays.asList("admin","accountant"));
+		mapping.put("/course/",Arrays.asList("admin","accountant"));
+		mapping.put("/paymentdetail/",Arrays.asList("admin","accountant"));
+
+		
+		
+		
+		
 		
 	}
 	
