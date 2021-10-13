@@ -69,31 +69,31 @@ public class ApiRoleMapping {
 
 	private void setBranchGetMappings(){
 		GET_MAPPINGS.put("/branch/", ADMIN_ALLOWED);
-		GET_MAPPINGS.put("/branch/.", ADMIN_ALLOWED);
-		GET_MAPPINGS.put("/branch/students/.", ADMIN_AND_ACCOUNTANT_ALLOWED);
+		GET_MAPPINGS.put("/branch/[0-9]+", ADMIN_ALLOWED);
+		GET_MAPPINGS.put("/branch/students/[0-9]+", ADMIN_AND_ACCOUNTANT_ALLOWED);
 	}
 
 	private void setAccountantGetMappings(){
 		GET_MAPPINGS.put("/accountant/", ADMIN_ALLOWED);
-		GET_MAPPINGS.put("/accountant/.", ADMIN_AND_ACCOUNTANT_ALLOWED);
-		GET_MAPPINGS.put("/accountant/branch/.", ADMIN_AND_ACCOUNTANT_ALLOWED);				
+		GET_MAPPINGS.put("/accountant/[0-9]+", ADMIN_AND_ACCOUNTANT_ALLOWED);
+		GET_MAPPINGS.put("/accountant/branch/[0-9]+", ADMIN_AND_ACCOUNTANT_ALLOWED);				
 	}
 
 	private void setCourseGetMappings(){
 		GET_MAPPINGS.put("/course/", ADMIN_AND_ACCOUNTANT_ALLOWED);
-		GET_MAPPINGS.put("/course/.", ADMIN_ALLOWED);
+		GET_MAPPINGS.put("/course/[0-9]+", ADMIN_ALLOWED);
 	}
 
 	private void setPaymentDetailGetMappings(){
 		GET_MAPPINGS.put("/paymentdetail/", ACCOUNTANT_ALLOWED);
-		GET_MAPPINGS.put("/paymentdetail/.", ACCOUNTANT_ALLOWED);
+		GET_MAPPINGS.put("/paymentdetail/[0-9]+", ACCOUNTANT_ALLOWED);
 	}
 
 	private void setStudentGetMappings(){
 		GET_MAPPINGS.put("/student/", ADMIN_AND_ACCOUNTANT_ALLOWED);
-		GET_MAPPINGS.put("/student/..", ADMIN_AND_ACCOUNTANT_ALLOWED);
-		GET_MAPPINGS.put("/student/course/..", ADMIN_AND_ACCOUNTANT_ALLOWED);
-		GET_MAPPINGS.put("/student/fee/..", ACCOUNTANT_ALLOWED);
+		GET_MAPPINGS.put("/student/[0-9]+", ADMIN_AND_ACCOUNTANT_ALLOWED);
+		GET_MAPPINGS.put("/student/course/[0-9]+", ADMIN_AND_ACCOUNTANT_ALLOWED);
+		GET_MAPPINGS.put("/student/fee/[0-9]+", ACCOUNTANT_ALLOWED);
 	}
 	
 	//Post Mappings
@@ -110,7 +110,7 @@ public class ApiRoleMapping {
 	}
 
 	private void setAccountantPostMappings(){
-		POST_MAPPINGS.put("/accountant/.", ADMIN_ALLOWED);
+		POST_MAPPINGS.put("/accountant/[0-9]+", ADMIN_ALLOWED);
 	}
 
 	private void setCoursePostMappings(){
@@ -118,11 +118,11 @@ public class ApiRoleMapping {
 	}
 
 	private void setPaymentDetailPostMappings(){
-		POST_MAPPINGS.put("/paymentdetail/.", ACCOUNTANT_ALLOWED);
+		POST_MAPPINGS.put("/paymentdetail/[0-9]+", ACCOUNTANT_ALLOWED);
 	}
 
 	private void setStudentPostMappings(){
-		POST_MAPPINGS.put("/student/./.", ACCOUNTANT_ALLOWED);
+		POST_MAPPINGS.put("/student/[0-9]+/[0-9]+", ACCOUNTANT_ALLOWED);
 	}
 
 	//Put Mappings
@@ -164,23 +164,23 @@ public class ApiRoleMapping {
 	}
 
 	private void setBranchDeleteMappings(){
-		DELETE_MAPPINGS.put("/branch/.", ADMIN_ALLOWED);
+		DELETE_MAPPINGS.put("/branch/[0-9]+", ADMIN_ALLOWED);
 	}
 
 	private void setAccountantDeleteMappings(){
-		DELETE_MAPPINGS.put("/accountant/.", ADMIN_ALLOWED);
+		DELETE_MAPPINGS.put("/accountant/[0-9]+", ADMIN_ALLOWED);
 	}
 
 	private void setCourseDeleteMappings(){
-		DELETE_MAPPINGS.put("/course/.", ADMIN_ALLOWED);
+		DELETE_MAPPINGS.put("/course/[0-9]+", ADMIN_ALLOWED);
 	}
 
 	private void setPaymentDetailDeleteMappings(){
-		DELETE_MAPPINGS.put("/paymentdetail/.", ACCOUNTANT_ALLOWED);
+		DELETE_MAPPINGS.put("/paymentdetail/[0-9]+", ACCOUNTANT_ALLOWED);
 	}
 
 	private void setStudentDeleteMappings(){
-		DELETE_MAPPINGS.put("/student/.", ADMIN_ALLOWED);
+		DELETE_MAPPINGS.put("/student/[0-9]+", ADMIN_ALLOWED);
 	}
 
 
