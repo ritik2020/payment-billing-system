@@ -151,7 +151,7 @@ public class ApiRoleMapping {
 	}
 
 	private void setStudentPutMappings(){
-		PUT_MAPPINGS.put("/student/", ACCOUNTANT_ALLOWED);
+		PUT_MAPPINGS.put("/student/", ADMIN_AND_ACCOUNTANT_ALLOWED);
 	}
 
 	//Delete Mappings
