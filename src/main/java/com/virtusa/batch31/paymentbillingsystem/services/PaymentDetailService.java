@@ -20,16 +20,27 @@ public class PaymentDetailService {
 
 	@Autowired
 	private EmailSenderService emailSenderService;
+
+	@Autowired
+	private FeeReceiptPDFGeneration feeReceiptPDFGeneration;
 	
 	public PaymentDetail createPaymentDetail(int rollNumber, PaymentDetail paymentDetail) {
-		PaymentDetail pd = paymentDetailRepository.save(paymentDetail);
-		Student student = studentRepository.getById(rollNumber);
-		student.getPaymentDetails().add(pd);
-		studentRepository.save(student);
-		String emailBody = "Amount " + paymentDetail.getAmount() + " paid successfully";
-		String emailSubject = "Fee Notification!! Roll Number " + student.getRollNumber();
-		emailSenderService.sendSimpleEmail(student.getEmail(), emailBody, emailSubject);
-		return pd;
+		try {
+			PaymentDetail pd = paymentDetailRepository.save(paymentDetail);
+			Student student = studentRepository.getById(rollNumber);
+			student.getPaymentDetails().add(pd);
+			studentRepository.save(student);
+			String emailBody = "Amount " + paymentDetail.getAmount() + " paid successfully";
+			String emailSubject = "Fee Notification!! Roll Number " + student.getRollNumber();
+			String fileName = student.getRollNumber() + "-" + pd.getId();
+			String filePath = feeReceiptPDFGeneration.generatePdf(fileName, student, pd);
+			emailSenderService.sendEmailWithAttachment(student.getEmail(), emailBody, emailSubject, filePath);
+			return pd;
+		} catch(Exception e){
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
 	}
 
 	public PaymentDetail getPaymentDetail(int id) {
