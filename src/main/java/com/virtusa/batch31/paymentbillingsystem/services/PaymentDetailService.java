@@ -17,12 +17,18 @@ public class PaymentDetailService {
 
 	@Autowired
 	private StudentRepository studentRepository;
+
+	@Autowired
+	private EmailSenderService emailSenderService;
 	
 	public PaymentDetail createPaymentDetail(int rollNumber, PaymentDetail paymentDetail) {
 		PaymentDetail pd = paymentDetailRepository.save(paymentDetail);
 		Student student = studentRepository.getById(rollNumber);
 		student.getPaymentDetails().add(pd);
 		studentRepository.save(student);
+		String emailBody = "Amount " + paymentDetail.getAmount() + " paid successfully";
+		String emailSubject = "Fee Notification!! Roll Number " + student.getRollNumber();
+		emailSenderService.sendSimpleEmail(student.getEmail(), emailBody, emailSubject);
 		return pd;
 	}
 
